@@ -5,7 +5,9 @@
   <title>RA Geolocalizada</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- AR.js -->
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
   <style>
@@ -15,11 +17,12 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.6);
       color: white;
       padding: 10px;
       font-family: Arial;
       font-size: 14px;
+      text-align: center;
     }
   </style>
 </head>
@@ -30,26 +33,44 @@
   embedded
   vr-mode-ui="enabled:false"
   arjs="sourceType: webcam; debugUIEnabled:false;"
+  renderer="precision: medium; antialias: true;"
 >
 
-  <!-- 🔴 CAMBIA ESTAS COORDENADAS -->
-  <a-entity gps-entity-place="latitude: 19.7896185; longitude: -103.4701526;">
+  <!-- 📍 PUNTO GEOLOCALIZADO -->
+  <a-entity gps-entity-place="latitude: 19.789628; longitude: -103.470163;">
+    
+    <!-- TEXTO GRANDE (~1 METRO DE ALTURA) -->
     <a-text
-      value="POI RA Geolocalizada"
-      scale="10 10 10"
-      position="0 10 0"
+      value="HOLIS"
+      position="0 20 0"
+      scale="15 15 15"
+      color="yellow"
       align="center"
-      color="white">
+      side="double">
     </a-text>
 
-    <a-box position="0 5 0" depth="2" height="2" width="2"></a-box>
+    <!-- Cubo grande para referencia visual -->
+    <a-box
+      position="0 8 0"
+      width="4"
+      height="4"
+      depth="4"
+      color="red">
+    </a-box>
+
   </a-entity>
 
-  <a-camera gps-camera rotation-reader></a-camera>
+  <!-- Cámara con FOV reducido para evitar zoom raro -->
+  <a-camera
+    gps-camera
+    rotation-reader
+    fov="60">
+  </a-camera>
+
 </a-scene>
 
 <div class="info">
-  Permite cámara y ubicación. Acércate al punto y apunta con el celular.
+  RA geolocalizada funcionando – Texto grande "HOLIS"
 </div>
 
 </body>
